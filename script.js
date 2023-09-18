@@ -17,9 +17,9 @@ function hideNoTaskMessage() {
 
 
 // Handle Enter key press in the input field to add a task
-taskInput.addEventListener('keyup', function (event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
+taskInput.addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+        e.preventDefault();
         addTodo();
     }
 });
@@ -69,7 +69,7 @@ function addTodo() {
     totalTasks++;
     taskCount.innerText = totalTasks
     taskInput.value = '';
-    
+
     // No message if there is a task present in the list
     if (totalTasks > 0) {
         showNoTaskMessage();
@@ -100,12 +100,12 @@ function deleteTodo(taskId) {
 // function to toggle the state of the created task
 function toggleTask(taskId) {
     const taskIndex = tasks.findIndex(task => task.id === taskId);
-   
+
     if (taskIndex !== -1) {
         // Toggling the state
         tasks[taskIndex].completed = !tasks[taskIndex].completed; // Update completed status
         const taskElement = document.getElementById(taskId);
-        
+
         // Changing the state if the taskElement is present
         if (taskElement) {
             const checkbox = taskElement.querySelector('.checkbox');
